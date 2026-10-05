@@ -132,20 +132,23 @@ function updateUIState() {
 function getMapsUrl() {
     if (selectedIds.length === 0) return '';
     
-    // Recupera tutte le tappe selezionate dall'utente in ordine
+    // Recupera tutte le tappe selezionate
     const selectedPlaces = selectedIds.map(id => places.find(p => p.id === id));
     
-    // 1. Origine fissa configurata in cima al file
+    // 1. Origine fissa
     const origin = encodeURIComponent(START_LOCATION);
     
-    // 2. L'ultima tappa selezionata diventa la destinazione finale
+    // 2. Destinazione finale (l'ultima tappa selezionata)
     const destination = encodeURIComponent(selectedPlaces[selectedPlaces.length - 1].address);
     
     let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`;
 
-    // 3. Se ci sono tappe, le inseriamo tutte come waypoint intermedi nell'ordine di click
-    const waypointsStr = selectedPlaces.map(p => encodeURIComponent(p.address)).join('|');
-    url += `&waypoints=${waypointsStr}`;
+    // 3. Waypoints intermedi (tutte le tappe tranne l'ultima)
+    if (selectedPlaces.length > 1) {
+        const intermediate = selectedPlaces.slice(0, selectedPlaces.length - 1);
+        const waypointsStr = intermediate.map(p => encodeURIComponent(p.address)).join('|');
+        url += `&waypoints=${waypointsStr}`;
+    }
 
     return url;
 }
