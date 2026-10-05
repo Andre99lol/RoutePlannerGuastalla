@@ -135,24 +135,17 @@ function getMapsUrl() {
     // Recupera tutte le tappe selezionate
     const selectedPlaces = selectedIds.map(id => places.find(p => p.id === id));
     
-    // 1. Origine fissa
-    const origin = encodeURIComponent(START_LOCATION);
+    // 1. Origine e Destinazione coincidono (Partenza e ritorno allo stesso punto)
+    const location = encodeURIComponent(START_LOCATION);
     
-    // 2. Destinazione finale (l'ultima tappa selezionata)
-    const destination = encodeURIComponent(selectedPlaces[selectedPlaces.length - 1].address);
-    
-    let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`;
+    let url = `https://www.google.com/maps/dir/?api=1&origin=${location}&destination=${location}`;
 
-    // 3. Waypoints intermedi (tutte le tappe tranne l'ultima)
-    if (selectedPlaces.length > 1) {
-        const intermediate = selectedPlaces.slice(0, selectedPlaces.length - 1);
-        const waypointsStr = intermediate.map(p => encodeURIComponent(p.address)).join('|');
-        url += `&waypoints=${waypointsStr}`;
-    }
+    // 2. Tutte le tappe selezionate diventano i waypoint intermedi del giro ad anello
+    const waypointsStr = selectedPlaces.map(p => encodeURIComponent(p.address)).join('|');
+    url += `&waypoints=${waypointsStr}`;
 
     return url;
 }
-
 
 
 function generateMapsRoute() {
