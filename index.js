@@ -12,8 +12,8 @@ const places = [
     { id: 6, name: "Graziella", address: "Gelateria le corti, Guastalla", category: "Carrozzina" },
     { id: 7, name: "Maria Franchin", address: "Tigota, Guastalla", category: "Autonoma" },
     { id: 8, name: "Mara", address: "Via pizzamiglio, 12-8, San girolamo, Guastalla", category: "Autonoma" },
-    { id: 9, name: "Ines", address: "Conad, Guastalla", category: "Carrozzina" }
-    { id: 10, name: "Franca", address: "Via Rossini 1, Guastalla", category: "Carrozzina" }
+    { id: 9, name: "Ines", address: "Conad, Guastalla", category: "Autonoma" }
+    { id: 10, name: "Franca", address: "Via Rossini 1, Guastalla", category: "Autonoma" }
     ];
 
 // Stato della selezione memorizzato in ordine cronologico di click
