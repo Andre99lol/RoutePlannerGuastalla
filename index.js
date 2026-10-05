@@ -132,21 +132,27 @@ function updateUIState() {
 function getMapsUrl() {
     if (selectedIds.length === 0) return '';
     
+    // Recupera l'elenco delle tappe selezionate
     const selectedPlaces = selectedIds.map(id => places.find(p => p.id === id));
-    const origin = encodeURIComponent(selectedPlaces[0].address);
+    
+    // Usa la costante START_LOCATION come origine fissa
+    const origin = encodeURIComponent(START_LOCATION);
+    // L'ultima tappa selezionata diventa la destinazione finale
     const destination = encodeURIComponent(selectedPlaces[selectedPlaces.length - 1].address);
     
     let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`;
 
-    // Se ci sono più di 2 punti, aggiunge i waypoint intermedi nell'URL ufficiale di Google Maps
-    if (selectedPlaces.length > 2) {
-        const intermediate = selectedPlaces.slice(1, selectedPlaces.length - 1);
+    // Gestione dei waypoint intermedi (tutte le tappe tranne l'ultima)
+    if (selectedPlaces.length > 1) {
+        // Prende tutte le tappe tranne l'ultima per metterle nei waypoint
+        const intermediate = selectedPlaces.slice(0, selectedPlaces.length - 1);
         const waypointsStr = intermediate.map(p => encodeURIComponent(p.address)).join('|');
         url += `&waypoints=${waypointsStr}`;
     }
 
     return url;
 }
+
 
 function generateMapsRoute() {
     const url = getMapsUrl();
