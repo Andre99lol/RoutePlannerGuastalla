@@ -1,11 +1,8 @@
 // Elenco dei punti di interesse configurabili per il tuo itinerario
 const places = [
-    { id: 1, name: "Stazione Centrale", address: "Stazione Centrale, Milano", category: "Trasporti" },
-    { id: 2, name: "Duomo di Milano", address: "Piazza del Duomo, Milano", category: "Cultura" },
-    { id: 3, name: "Castello Sforzesco", address: "Piazza Castello, Milano", category: "Monumento" },
-    { id: 4, name: "Parco Sempione", address: "Parco Sempione, Milano", category: "Natura" },
-    { id: 5, name: "Navigli", address: "Alzaia Naviglio Grande, Milano", category: "Movida" },
-    { id: 6, name: "Stadio San Siro", address: "Piazzale Angelo Moratti, Milano", category: "Sport" }
+    { id: 1, name: "Trueda", address: "Stazione, Guastalla", category: "Autonoma" },
+    { id: 2, name: "Daolio", address: "Via Bonazzi 1, Guastalla", category: "Autonoma" },
+    { id: 3, name: "Gianfranco", address: "Via Catellani, Guastalla", category: "Carrozzina" }
 ];
 
 // Stato della selezione memorizzato in ordine cronologico di click
