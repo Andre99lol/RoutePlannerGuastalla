@@ -1,3 +1,7 @@
+//prima tappa
+const START_LOCATION = "Strada Comunale, Via S. Cristoforo, 2, 42016 Guastalla"; // Cambia con il tuo indirizzo di partenza
+
+
 // Elenco dei punti di interesse configurabili per il tuo itinerario
 const places = [
     { id: 1, name: "Trueda", address: "Stazione, Guastalla", category: "Autonoma" },
